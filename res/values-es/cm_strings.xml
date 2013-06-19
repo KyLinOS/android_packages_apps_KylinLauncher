@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The MoKee OpenSource Project
+<!-- Copyright (C) 2013 The Android OpenSource Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
     <string name="edit_target_label">Editar</string>
     <string name="menu_lock_workspace">Bloquear escritorio</string>
     <string name="menu_unlock_workspace">Desbloquear escritorio</string>
-    <string name="menu_preferences">Ajustes de MoKeeLauncher</string>
+    <string name="menu_preferences">Ajustes de leoLauncher</string>
     <string name="menu_apps_sort_title">Nombre</string>
     <string name="menu_apps_sort_install_date">Fecha</string>
     <string name="menu_apps_filter_system">Sistema</string>

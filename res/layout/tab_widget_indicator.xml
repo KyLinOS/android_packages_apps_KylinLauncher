@@ -14,6 +14,6 @@
      limitations under the License.
 -->
 
-<com.mokee.launcher.AccessibleTabView
+<com.leo.launcher.AccessibleTabView
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/TabIndicator.AppsCustomize" />

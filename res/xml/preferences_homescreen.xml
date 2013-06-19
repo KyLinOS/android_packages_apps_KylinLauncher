@@ -15,13 +15,13 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:launcher="http://schemas.android.com/apk/res/com.mokee.launcher"
+    xmlns:launcher="http://schemas.android.com/apk/res/com.leo.launcher"
     android:key="ui_homescreen"
     android:title="@string/preferences_interface_homescreen_title">
     <PreferenceCategory
         android:key="ui_homescreen_general"
         android:title="@string/preferences_interface_homescreen_general_category">
-        <com.mokee.launcher.preference.DoubleNumberPickerPreference android:key="ui_homescreen_grid"
+        <com.leo.launcher.preference.DoubleNumberPickerPreference android:key="ui_homescreen_grid"
             android:title="@string/preferences_interface_homescreen_general_grid_title"
             android:summary="@string/preferences_interface_homescreen_general_grid_summary"
             launcher:pickerTitle1="@string/preferences_interface_homescreen_general_grid_rows_title"
@@ -64,7 +64,7 @@
             android:title="@string/preferences_interface_homescreen_scrolling_wallpaper_hack_title"
             android:summary="@string/preferences_interface_homescreen_scrolling_wallpaper_hack_summary"
             android:defaultValue="@bool/config_workspaceDefaultWallpaperHack" />
-        <com.mokee.launcher.preference.NumberPickerPreference android:key="ui_homescreen_scrolling_wallpaper_size"
+        <com.leo.launcher.preference.NumberPickerPreference android:key="ui_homescreen_scrolling_wallpaper_size"
             android:title="@string/preferences_interface_homescreen_scrolling_wallpaper_size_title"
             android:summary="@string/preferences_interface_homescreen_scrolling_wallpaper_size_summary"
             android:defaultValue="2"

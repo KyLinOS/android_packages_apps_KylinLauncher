@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The MoKee OpenSource Project
+<!-- Copyright (C) 2013 The Android OpenSource Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
     <string name="edit_target_label">Bearbeiten</string>
     <string name="menu_lock_workspace">Startbildschirm sperren</string>
     <string name="menu_unlock_workspace">Startbildschirm entsperren</string>
-    <string name="menu_preferences">MoKeeLauncher-Einstellungen</string>
+    <string name="menu_preferences">LeoLauncher-Einstellungen</string>
     <string name="menu_apps_sort_title">Name</string>
     <string name="menu_apps_sort_install_date">Installationsdatum</string>
     <string name="menu_apps_filter_system">System</string>

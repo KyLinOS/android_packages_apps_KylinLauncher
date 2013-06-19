@@ -17,20 +17,20 @@
 <!-- Full screen view projects under the status bar and contains the background -->
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:launcher="http://schemas.android.com/apk/res/com.mokee.launcher"
+    xmlns:launcher="http://schemas.android.com/apk/res/com.leo.launcher"
     android:id="@+id/launcher"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/workspace_bg">
 
-    <com.mokee.launcher.DragLayer
+    <com.leo.launcher.DragLayer
         android:id="@+id/drag_layer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
         <!-- The workspace contains 5 screens of cells -->
-        <com.mokee.launcher.Workspace
+        <com.leo.launcher.Workspace
             android:id="@+id/workspace"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -110,7 +110,7 @@
             android:layout_height="match_parent"
             android:visibility="gone" />
 
-        <com.mokee.launcher.DrawableStateProxyView
+        <com.leo.launcher.DrawableStateProxyView
             android:id="@+id/voice_button_proxy"
             android:layout_width="@dimen/qsb_bar_height"
             android:layout_height="@dimen/app_icon_size"
@@ -127,5 +127,5 @@
             android:layout_height="match_parent"
             android:visibility="invisible" />
 
-    </com.mokee.launcher.DragLayer>
+    </com.leo.launcher.DragLayer>
 </FrameLayout>
