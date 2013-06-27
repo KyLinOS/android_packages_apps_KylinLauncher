@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<!-- Copyright (C) 2009 The LeoSalmonOS Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -24,13 +24,23 @@
         android:entries="@array/preferences_interface_drawer_orientation_entries"
         android:entryValues="@array/preferences_interface_drawer_orientation_values"
         android:defaultValue="horizontal" />
-    <Preference android:key="ui_drawer_hidden_apps"
-        android:title="@string/preferences_interface_drawer_hidden_apps_title"
-        android:summary="@string/preferences_interface_drawer_hidden_apps_summary">
-        <intent
-            android:targetPackage="com.leo.launcher"
-            android:targetClass="com.leo.launcher.preference.HiddenAppsActivity"/>
-    </Preference>
+    <PreferenceCategory android:title="@string/preferences_interface_drawer_apps_category">
+        <Preference android:key="ui_drawer_hidden_apps"
+            android:title="@string/preferences_interface_drawer_hidden_apps_title"
+            android:summary="@string/preferences_interface_drawer_hidden_apps_summary">
+            <intent
+                android:targetPackage="com.leo.launcher"
+                android:targetClass="com.leo.launcher.preference.HiddenAppsActivity"/>
+        </Preference>
+        <CheckBoxPreference android:key="ui_drawer_remove_hidden_apps_shortcuts"
+            android:title="@string/preferences_interface_drawer_hidden_apps_shortcuts_title"
+            android:summary="@string/preferences_interface_drawer_hidden_apps_shortcuts_summary"
+            android:defaultValue="false" />
+        <CheckBoxPreference android:key="ui_drawer_remove_hidden_apps_widgets"
+            android:title="@string/preferences_interface_drawer_hidden_apps_widgets_title"
+            android:summary="@string/preferences_interface_drawer_hidden_apps_widgets_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/preferences_interface_drawer_widgets_category">
         <CheckBoxPreference android:key="ui_drawer_widgets_join_apps"
             android:title="@string/preferences_interface_drawer_widgets_join_apps_title"

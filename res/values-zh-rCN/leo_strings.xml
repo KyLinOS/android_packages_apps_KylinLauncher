@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The Android OpenSource Project
+<!-- Copyright (C) 2013 The Android LeoSalmonOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Application name -->
+    <string name="application_name">魔幻鱼桌面</string>
     <!-- Noun, menu item used to show the system settings -->
     <string name="menu_preview">桌面缩略图</string>
 </resources>

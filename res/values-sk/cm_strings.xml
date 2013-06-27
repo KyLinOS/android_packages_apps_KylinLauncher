@@ -20,7 +20,7 @@
     <string name="edit_target_label">Upraviť</string>
     <string name="menu_lock_workspace">Uzamknúť domovskú obrazovku</string>
     <string name="menu_unlock_workspace">Odomknúť domovskú obrazovku</string>
-    <string name="menu_preferences">Nastavenia spúšťača Trebuchet</string>
+    <string name="menu_preferences">Nastavenia spúšťača LeoLauncher</string>
     <string name="menu_apps_sort_title">Názov</string>
     <string name="menu_apps_sort_install_date">Dátum inštalácie</string>
     <string name="menu_apps_filter_system">Systémové</string>
