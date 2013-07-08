@@ -1871,8 +1871,6 @@ public final class Launcher extends Activity
                 return true;
             case MENU_PREVIEWS:
                 // If showPreview, will gone view
-                mDockDivider.setVisibility(View.GONE);
-                mHotseat.setVisibility(View.GONE);
                 showPreviewLayout(true);
                 return true;
         }
@@ -2786,9 +2784,14 @@ public final class Launcher extends Activity
         final float scale = (float) res.getInteger(R.integer.config_appsCustomizeZoomScaleFactor);
         final View fromView = mWorkspace;
         final AppsCustomizeTabHost toView = mAppsCustomizeTabHost;
-        final int startDelay = 0;
+        final int startDelay =
+                res.getInteger(R.integer.config_workspaceAppsCustomizeAnimationStagger);
 
         setPivotsForZoom(toView);
+
+        // Shrink workspaces away if going to AppsCustomize from workspace
+        Animator workspaceAnim =
+                mWorkspace.getChangeStateAnimation(Workspace.State.SMALL, animated);
 
         mWorkspace.buildPageHardwareLayers();
 
@@ -2837,27 +2840,23 @@ public final class Launcher extends Activity
                     toView.setVisibility(View.VISIBLE);
                     toView.bringToFront();
 
-
-
-                if (!springLoaded && !LauncherApplication.isScreenLarge()) {
-                    // Hide the workspace scrollbar
-                    mWorkspace.hideScrollingIndicator(true);
-                    hideDockDivider();
-                    mDockDivider.setVisibility(View.GONE);
-
-                    // Hide the search bar
-                    if (mSearchDropTargetBar != null) {
-                        mSearchDropTargetBar.hideSearchBar(false);
+                    if (mWorkspace != null && !springLoaded && !LauncherApplication.isScreenLarge()) {
+                        // Hide the workspace scrollbar
+                        mWorkspace.hideScrollingIndicator(true);
+                        mDockDivider.setVisibility(View.GONE);
+                        // Hide the search bar
+                        if (mSearchDropTargetBar != null) {
+                            mSearchDropTargetBar.hideSearchBar(false);
+                        }
+                        hideHotseat(animated);
                     }
-                }
 
-                    hideHotseat(animated);
                 }
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     dispatchOnLauncherTransitionEnd(fromView, animated, false);
                     dispatchOnLauncherTransitionEnd(toView, animated, false);
-
+                    toView.setVisibility(View.VISIBLE);
                     if (mWorkspace != null && !springLoaded && !LauncherApplication.isScreenLarge()) {
                         // Hide the workspace scrollbar
                         mWorkspace.hideScrollingIndicator(true);
@@ -2885,11 +2884,13 @@ public final class Launcher extends Activity
                 }
             });
 
-            final ObjectAnimator workspaceAlphaAnim = ObjectAnimator
+            if (workspaceAnim != null) {
+                final ObjectAnimator workspaceAlphaAnim = ObjectAnimator
                     .ofFloat(fromView, "alpha", 1f, 0f)
                     .setDuration(fadeDuration);
-            alphaAnim.setInterpolator(new DecelerateInterpolator(1.5f));
-            mStateAnimation.play(workspaceAlphaAnim);
+                alphaAnim.setInterpolator(new DecelerateInterpolator(1.0f));
+                mStateAnimation.playTogether(workspaceAnim, workspaceAlphaAnim);
+            }
 
             boolean delayAnim = false;
             final ViewTreeObserver observer;
@@ -2941,6 +2942,7 @@ public final class Launcher extends Activity
                 startAnimRunnable.run();
             }
         } else {
+            toView.setAlpha(1.0f);
             toView.setTranslationX(0.0f);
             toView.setTranslationY(0.0f);
             toView.setScaleX(1.0f);
@@ -3003,7 +3005,6 @@ public final class Launcher extends Activity
         setPivotsForZoom(fromView);
         updateWallpaperVisibility(true);
         showHotseat(animated);
-        mDockDivider.setVisibility(View.VISIBLE);
         if (animated) {
             final LauncherViewPropertyAnimator scaleAnim =
                     new LauncherViewPropertyAnimator(fromView);
@@ -3033,6 +3034,12 @@ public final class Launcher extends Activity
 
             mStateAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
+                public void onAnimationStart(Animator animation) {
+                    showHotseat(false);
+                    mDockDivider.setVisibility(mShowDockDivider ? View.VISIBLE : View.GONE);
+                }
+				
+                @Override
                 public void onAnimationEnd(Animator animation) {
                     updateWallpaperVisibility(true);
                     fromView.setVisibility(View.GONE);
@@ -3050,13 +3057,13 @@ public final class Launcher extends Activity
             });
 
             mStateAnimation.playTogether(scaleAnim, alphaAnim);
-
-            final ObjectAnimator workspaceAlphaAnim = ObjectAnimator
-                .ofFloat(toView, "alpha", 0f, 1f)
-                .setDuration(fadeOutDuration);
-            alphaAnim.setInterpolator(new DecelerateInterpolator(1.0f));
-            mStateAnimation.play(workspaceAlphaAnim);
-
+            if (workspaceAnim != null) {
+                final ObjectAnimator workspaceAlphaAnim = ObjectAnimator
+                    .ofFloat(toView, "alpha", 0f, 1f)
+                    .setDuration(fadeOutDuration);
+                alphaAnim.setInterpolator(new DecelerateInterpolator(1.0f));
+                mStateAnimation.playTogether(workspaceAnim, workspaceAlphaAnim);
+            }
             dispatchOnLauncherTransitionStart(fromView, animated, true);
             dispatchOnLauncherTransitionStart(toView, animated, true);
             final Animator stateAnimation = mStateAnimation;
@@ -3112,7 +3119,9 @@ public final class Launcher extends Activity
     void showPreviewLayout(boolean animated) {
         if(mState == State.WORKSPACE) {
             mState = State.PREVIEW;
-            showWorkspacePreviews(animated);
+            showWorkspacePreviews(animated);	
+            mDockDivider.setVisibility(View.GONE);
+            hideHotseat(false);
             mPreviewLayout.requestFocus();
             mSearchDropTargetBar.hideSearchBar(animated);
             closeFolder();
@@ -3129,13 +3138,10 @@ public final class Launcher extends Activity
             mWorkspace.setVisibility(View.VISIBLE);
             if (isPreviewsVisible()) {
                 hideWorkspacePreviews(animated);
-                if (mShowDockDivider)
-                    mDockDivider.setVisibility(View.VISIBLE);
-                if (mShowHotseat)
-                    mHotseat.setVisibility(View.VISIBLE);
             } else {
                 hideAppsCustomizeHelper(State.WORKSPACE, animated, onCompleteRunnable);
             }
+            mDockDivider.setVisibility(mShowDockDivider ? View.VISIBLE : View.GONE);
             // Show the search bar (only animate if we were showing the drop target bar in spring
             // loaded mode)
             if (mSearchDropTargetBar != null) {
@@ -4074,6 +4080,10 @@ public final class Launcher extends Activity
 
         setPivotsForZoom(toView);
 
+        // preview when config_workspaceDefualtFadeInAdjacentScreens is true
+        Animator workspaceAnim =
+                mWorkspace.getChangeStateAnimation(Workspace.State.SMALL, animated);
+
         mWorkspace.buildPageHardwareLayers();
 
         mPreviewLayout.snapDrawingCacheToImageViews();
@@ -4137,12 +4147,14 @@ public final class Launcher extends Activity
                     animationCancelled = true;
                 }
             });
-
-            final ObjectAnimator workspaceAlphaAnim = ObjectAnimator
+			
+            if (workspaceAnim != null) {
+                final ObjectAnimator workspaceAlphaAnim = ObjectAnimator
                     .ofFloat(fromView, "alpha", 1f, 0f)
                     .setDuration(fadeDuration);
-            alphaAnim.setInterpolator(new DecelerateInterpolator(1.5f));
-            mStateAnimation.play(workspaceAlphaAnim);
+                alphaAnim.setInterpolator(new DecelerateInterpolator(1.5f));
+                mStateAnimation.playTogether(workspaceAnim, workspaceAlphaAnim);
+            }
 
             boolean delayAnim = false;
             final ViewTreeObserver observer;
@@ -4275,7 +4287,6 @@ public final class Launcher extends Activity
                         hidePreviewLayout();
                         dispatchOnLauncherTransitionEnd(fromView, animated, true);
                         dispatchOnLauncherTransitionEnd(toView, animated, true);
-                        showHotseat(animated);
                         if (mWorkspace != null) {
                             mWorkspace.hideScrollingIndicator(false);
                         }

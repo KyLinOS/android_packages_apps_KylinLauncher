@@ -18,4 +18,11 @@
     <string name="application_name">魔幻鱼桌面</string>
     <!-- Noun, menu item used to show the system settings -->
     <string name="menu_preview">桌面缩略图</string>
+    <!-- Gestures -->
+    <string name="preferences_interface_homescreen_gestures_title">手势</string>
+    <string name="preferences_interface_homescreen_gestures_summary">指定主屏幕手势动作</string>
+    <string name="preferences_interface_homescreen_gestures_up_gesture_title">上划</string>
+    <string name="preferences_interface_homescreen_gestures_down_gesture_title">下划</string>
+    <string name="preferences_interface_homescreen_gestures_pinch_gesture_title">两指缩放</string>
+    <string name="preferences_interface_homescreen_gestures_spread_gesture_title">两指扩张</string>
 </resources>
