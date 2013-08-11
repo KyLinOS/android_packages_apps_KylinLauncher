@@ -44,12 +44,12 @@
 #$(call add-clean-step, find $(OUT_DIR) -type f -name "IGTalkSession*" -print0 | xargs -0 rm -f)
 #$(call add-clean-step, rm -rf $(PRODUCT_OUT)/data/*)
 
-$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/LeoLauncher_intermediates)
-$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/LeoLauncher_intermediates)
-$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/LeoLauncher_intermediates)
-$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/LeoLauncher_intermediates)
-$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/LeoLauncher_intermediates)
-$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/app/LeoLauncher.apk)
+$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/KylinLauncher_intermediates)
+$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/KylinLauncher_intermediates)
+$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/KylinLauncher_intermediates)
+$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/KylinLauncher_intermediates)
+$(call add-clean-step, rm -rf $(OUT_DIR)/target/common/obj/APPS/KylinLauncher_intermediates)
+$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/app/KylinLauncher.apk)
 
 # ************************************************
 # NEWER CLEAN STEPS MUST BE AT THE END OF THE LIST

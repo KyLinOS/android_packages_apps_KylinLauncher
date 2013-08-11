@@ -14,9 +14,9 @@
      limitations under the License.
 -->
 
-<com.leo.launcher.PagedViewIcon
+<com.kylin.launcher.PagedViewIcon
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:launcher="http://schemas.android.com/apk/res/com.leo.launcher"
+    xmlns:launcher="http://schemas.android.com/apk/res/com.kylin.launcher"
 
     style="@style/WorkspaceIcon.Portrait.AppsCustomize"
 

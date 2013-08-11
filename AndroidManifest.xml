@@ -19,7 +19,7 @@
 -->
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.leo.launcher"
+    package="com.kylin.launcher"
     android:versionName="@string/application_version">
 
     <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="13" />
@@ -64,14 +64,14 @@
     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
 
     <application
-        android:name="com.leo.launcher.LauncherApplication"
+        android:name="com.kylin.launcher.LauncherApplication"
         android:label="@string/application_name"
         android:icon="@mipmap/ic_launcher_home"
         android:hardwareAccelerated="true"
         android:largeHeap="@bool/config_largeHeap"
         android:supportsRtl="true">
         <activity
-            android:name="com.leo.launcher.Launcher"
+            android:name="com.kylin.launcher.Launcher"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"
@@ -86,7 +86,7 @@
         </activity>
 
         <activity
-            android:name="com.leo.launcher.WallpaperChooser"
+            android:name="com.kylin.launcher.WallpaperChooser"
             android:theme="@style/Theme.WallpaperPicker"
             android:label="@string/pick_wallpaper"
             android:icon="@mipmap/ic_launcher_wallpaper"
@@ -102,27 +102,27 @@
 
         <!-- Intent received used to prepopulate the default workspace. -->
         <receiver
-            android:name="com.leo.launcher.PreloadReceiver"
+            android:name="com.kylin.launcher.PreloadReceiver"
             android:permission="com.android.launcher.permission.PRELOAD_WORKSPACE">
             <intent-filter>
                 <action android:name="com.android.launcher.action.PRELOAD_WORKSPACE" />
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.leo.launcher.preference.Preferences"
+        <activity android:name="com.kylin.launcher.preference.Preferences"
             android:label="@string/preferences_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="com.leo.category.LAUNCHER_PREFERENCES" />
+                <category android:name="com.kylin.category.LAUNCHER_PREFERENCES" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.leo.launcher.preference.HiddenAppsActivity"
+        <activity android:name="com.kylin.launcher.preference.HiddenAppsActivity"
             android:label="@string/hidden_apps_title" />
 
         <!-- Intent received used to install shortcuts from other applications -->
         <receiver
-            android:name="com.leo.launcher.InstallShortcutReceiver"
+            android:name="com.kylin.launcher.InstallShortcutReceiver"
             android:permission="com.android.launcher.permission.INSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
@@ -131,7 +131,7 @@
 
         <!-- Intent received used to uninstall shortcuts from other applications -->
         <receiver
-            android:name="com.leo.launcher.UninstallShortcutReceiver"
+            android:name="com.kylin.launcher.UninstallShortcutReceiver"
             android:permission="com.android.launcher.permission.UNINSTALL_SHORTCUT">
             <intent-filter>
                 <action android:name="com.android.launcher.action.UNINSTALL_SHORTCUT" />
@@ -140,7 +140,7 @@
 
         <!-- New user initialization; set up initial wallpaper -->
         <receiver
-            android:name="com.leo.launcher.UserInitializeReceiver"
+            android:name="com.kylin.launcher.UserInitializeReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.USER_INITIALIZE" />
@@ -149,8 +149,8 @@
 
         <!-- The settings provider contains Home's data, like the workspace favorites -->
         <provider
-            android:name="com.leo.launcher.LauncherProvider"
-            android:authorities="com.leo.launcher.settings"
+            android:name="com.kylin.launcher.LauncherProvider"
+            android:authorities="com.kylin.launcher.settings"
             android:writePermission="com.android.launcher.permission.WRITE_SETTINGS"
             android:exported="true"
             android:readPermission="com.android.launcher.permission.READ_SETTINGS" />
